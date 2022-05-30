@@ -1,5 +1,12 @@
-You got this! <br>
+<mat-toolbar>
+    <span>Crypto checker</span>
+    <span class="spacer"></span>
+    <mat-form-field>
+      <mat-select (valueChange) ="sendCurrency($event)" class="text-sm" [(ngModel)] = "selectedCurrency">
+        <mat-option selected value="NGN">NGN</mat-option>
+        <mat-option value="USD">USD</mat-option>
+      </mat-select>
+    </mat-form-field>
+</mat-toolbar>
 
-You are possible <br>
-
-daily going forward through jesus <br>
+<router-outlet></router-outlet>

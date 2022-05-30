@@ -7,4 +7,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'crypto-checker-app';
+
+  selectedCurrency: string = "NGN"
+
+  constructor() {
+    
+  }
+
+  sendCurrency(event:string){
+    console.log(event);
+  }
 }
