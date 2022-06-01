@@ -6,7 +6,7 @@ import { CryptoListComponent } from './crypto-list/crypto-list.component';
 const routes: Routes = [
   { path: '', redirectTo: 'crypto-list', pathMatch: 'full'}, // homepage is redirected to a component
   { path: 'crypto-list', component: CryptoListComponent },
-  { path: 'coin-details', component: CoinDetailsComponent },
+  { path: 'coin-details/:id', component: CoinDetailsComponent },
 
 ];
 
