@@ -16,7 +16,7 @@ export class ApiService {
     return this.http.get<any>(`https://api.coingecko.com/api/v3/coins/markets?vs_currency=${currency}&order=market_cap_desc&per_page=10&page=1&sparkline=false&price_change_percentage=24h`)
   }
 
-  getGraphCurrencyData(colnId:string, currency:string, days: string ){
+  getGraphCurrencyData(colnId:string, currency:string, days: number ){
     return this.http.get<any>(`https://api.coingecko.com/api/v3/coins/${colnId}/market_chart?vs_currency=${currency}&days=${days}`)
   }
 
