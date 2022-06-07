@@ -5,6 +5,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { ApiService } from '../service/api.service';
 import { Router } from '@angular/router';
+import { CurrencyService } from '../service/currency.service';
 
 @Component({
   selector: 'app-crypto-list',
@@ -14,6 +15,7 @@ import { Router } from '@angular/router';
 export class CryptoListComponent implements OnInit {
 
   bannerData : any = [];
+  currency : string = "NGN";
   // data : any = ['ade','kola', 'bidemi', 'tolu', 'bimpe'];
   // dataSource : any = [];
   dataSource!: MatTableDataSource<any>;
@@ -24,17 +26,23 @@ export class CryptoListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator !: MatPaginator;
   @ViewChild(MatSort) sort !: MatSort;
 
-  constructor( private api: ApiService, private router: Router) {
+  constructor( private api: ApiService, private router: Router, private currencyService:CurrencyService ) {
    
    }
 
   ngOnInit(): void {
     this.getAllData();
     this.getBannerData();
+    this.currencyService.getCurrency()
+    .subscribe(val=>{
+      this.currency = val;
+      this.getAllData();
+      this.getBannerData();
+    })
   }
 
   getBannerData(){
-     this.api.getTrendingCurrency('NGN')
+     this.api.getTrendingCurrency(this.currency)
      .subscribe(res =>{
         console.log(res);
         this.bannerData = res;
@@ -42,7 +50,7 @@ export class CryptoListComponent implements OnInit {
   }
 
   getAllData(){
-    this.api.getCurrencyData('NGN')
+    this.api.getCurrencyData(this.currency)
      .subscribe(res =>{
         console.log(res);
         // this.dataPort = res;
